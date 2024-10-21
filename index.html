@@ -51,8 +51,9 @@
            tened cuidado con los controles del acordeon-->
       <!-- as an example, we have created an accordeon, but you have to decide the structure to show the results 
            be careful with the controlls of the accordeon-->
-
-      <div class="accordion" id="accordionExample"></div>
+      <div class="container">
+        <div class="accordion" id="accordionExample"></div>
+      </div>
     </main>
     <footer>
       <!-- place footer here -->
@@ -65,22 +66,26 @@
             class="accordion-button"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#collapse1"
+            data-bs-target="#a1"
             aria-expanded="true"
             aria-controls="collapseOne"
-            data-bs-parent="#accordionExample"
           >
             Accordion Item #1
           </button>
         </h2>
         <div
-          id="collapse1"
+          id="a1"
           class="accordion-collapse collapse"
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
-            This is the first item's accordion body.
+          <div class="accordion-body w-100 row">
+            <div class="col-4">
+              <img class="card-img-top" src="" alt="" />
+            </div>
+            <div class="content col-8">
+              <div class="description"></div>
+            </div>
           </div>
         </div>
       </div>
