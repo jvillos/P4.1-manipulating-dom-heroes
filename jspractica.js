@@ -15,7 +15,20 @@ fetch("./data/heroes.json")
     console.log(e);
   });
 
+  const accordeonTemplate = document.querySelector("#accordion-item").content;
+  const items = document.querySelector(".accordion")
+
 function renderCards(jsondata) {
   for (let char of jsondata.data.results) {
+    let newItem = accordeonTemplate.cloneNode(true);
+
+    newItem.querySelector(".accordion-button").innerHTML = char.name;
+    newItem.querySelector(".accordion-body").innerHTML = char.description;
+
+    items.append(newItem);
   }
 }
+
+renderCards(jsondata);
+
+
