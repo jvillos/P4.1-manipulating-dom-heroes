@@ -28,6 +28,8 @@ function renderCards(jsondata) {
     newItem.querySelector(".accordion-button").innerHTML = char.name;
     newItem.querySelector(".description").innerHTML = char.description;
     newItem.querySelector(".card-img-top").src = `${char.thumbnail.path}.${char.thumbnail.extension}`;
+    newItem.querySelector(".accordion-collapse").setAttribute("data-bs-parent", `#${char.id}`);
+
     /*newItem.querySelector(".accordion-collapse").id = char.id;
     newItem.querySelector(".accordion-button").data-bs-target = `#${char.id}`;
     newItem.querySelector(".accordion-body").innerHTML = char.description;
