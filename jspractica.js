@@ -15,8 +15,8 @@ fetch("./data/heroes.json")
     console.log(e);
   });
 
-  const accordeonTemplate = document.querySelector("#accordion-item").content;
-  const items = document.querySelector(".accordion")
+const accordeonTemplate = document.querySelector("#accordion-item").content;
+const items = document.querySelector(".accordion")
 
 function renderCards(jsondata) {
   for (let char of jsondata.data.results) {
@@ -26,7 +26,12 @@ function renderCards(jsondata) {
     //i want to extract name, image, description, series and comics
 
     newItem.querySelector(".accordion-button").innerHTML = char.name;
-    newItem.querySelector(".description").innerHTML = char.description;
+
+    if (char.description != '') {
+      newItem.querySelector(".description").innerHTML = char.description;
+    }else{
+      newItem.querySelector(".description").innerHTML = "(no description available)";
+    }
     newItem.querySelector(".card-img-top").src = `${char.thumbnail.path}.${char.thumbnail.extension}`;
 
     newItem.querySelector(".accordion-collapse").id = uniqueId;
@@ -35,9 +40,10 @@ function renderCards(jsondata) {
     const comicsList = newItem.querySelector('.comics-list');
     const seriesList = newItem.querySelector('.series-list');
 
+    
     char.comics.items.forEach(comic => {
       const listItem = document.createElement('li');
-      listItem.textContent = comic.name; 
+      listItem.textContent = comic.name;
       comicsList.appendChild(listItem);
     });
 
