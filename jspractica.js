@@ -21,19 +21,31 @@ fetch("./data/heroes.json")
 function renderCards(jsondata) {
   for (let char of jsondata.data.results) {
     let newItem = accordeonTemplate.cloneNode(true);
-
+    const uniqueId = `collapse-${char.id}`;
 
     //i want to extract name, image, description, series and comics
 
     newItem.querySelector(".accordion-button").innerHTML = char.name;
     newItem.querySelector(".description").innerHTML = char.description;
     newItem.querySelector(".card-img-top").src = `${char.thumbnail.path}.${char.thumbnail.extension}`;
-    newItem.querySelector(".accordion-collapse").setAttribute("data-bs-parent", `#${char.id}`);
 
-    /*newItem.querySelector(".accordion-collapse").id = char.id;
-    newItem.querySelector(".accordion-button").data-bs-target = `#${char.id}`;
-    newItem.querySelector(".accordion-body").innerHTML = char.description;
-    newItem.querySelector(".accordion-body").innerHTML = char.description;*/
+    newItem.querySelector(".accordion-collapse").id = uniqueId;
+    newItem.querySelector(".accordion-button").setAttribute("data-bs-target", `#${uniqueId}`);
+
+    const comicsList = newItem.querySelector('.comics-list');
+    const seriesList = newItem.querySelector('.series-list');
+
+    char.comics.items.forEach(comic => {
+      const listItem = document.createElement('li');
+      listItem.textContent = comic.name; 
+      comicsList.appendChild(listItem);
+    });
+
+    char.series.items.forEach(series => {
+      const listItem = document.createElement('li');
+      listItem.textContent = series.name;
+      seriesList.appendChild(listItem);
+    });
 
     items.append(newItem);
   }
